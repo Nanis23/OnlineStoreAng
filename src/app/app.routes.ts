@@ -1,10 +1,10 @@
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { NgModule } from '@angular/core';
-import { LoginComponent } from './login/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LoginComponent } from './auth/login/login.component';
+import { HeaderComponent } from './auth/dashboard/component-dashboard/header/header.component';
+import { FooterComponent } from './auth/dashboard/component-dashboard/footer/footer.component';
+import { SidebarComponent } from './auth/dashboard/component-dashboard/sidebar/sidebar.component';
 import { DashboardLayoutComponent } from './auth/dashboard/dashboard-layout/dashboard-layout.component';
 
 export const routes: Routes = [

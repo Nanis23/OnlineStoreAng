@@ -51,7 +51,10 @@
       </div>
 
       <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="loginForm.invalid">Sign in</button>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="loginForm.invalid">Sign in</button>
+      </div>
+      
 
       <!-- Error message for login failure -->
       <div *ngIf="errorMessage" class="text-danger text-center mb-4">

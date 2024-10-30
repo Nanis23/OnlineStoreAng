@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../login-service.service';
+import { LoginService } from './login-services/login-service.service'; 
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -61,7 +61,7 @@ export class LoginComponent {
   private navigateByRole(role: string): void {
     switch (role) {
       case 'admin':
-        this.router.navigate(['/registration']);
+        this.router.navigate(['/dashboard']);
         break;
       case 'user':
         this.router.navigate(['/dashboard']);
