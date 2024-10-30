@@ -1,0 +1,32 @@
+<div class="dashboard-layout">
+  
+  <!-- Sidebar with a toggle button at the top -->
+  <div [ngClass]="{'sidebar': true, 'collapsed': sidebarCollapsed}">
+    <button class="btn btn-primary toggle-button" (click)="toggleSidebar()">
+      <span *ngIf="sidebarCollapsed">☰</span>
+      <span *ngIf="!sidebarCollapsed">×</span>
+    </button>
+    <div *ngIf="!sidebarCollapsed" class="sidebar-content">
+      <!-- Sidebar content here -->
+      <p>Dashboard</p>
+      <p>Settings</p>
+      <p>Profile</p>
+    </div>
+  </div>
+
+  
+  <!-- Main content area -->
+  <div [ngClass]="{'main-content': true, 'collapsed-content': sidebarCollapsed}">
+  
+    <!-- Header -->
+  <app-header></app-header>
+
+    <!-- Main Page Content -->
+    <div class="content">
+     
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+  </div>
+</div>

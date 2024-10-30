@@ -1,0 +1,35 @@
+.dashboard-layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  transition: width 0.3s;
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  height: 100vh;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+
+.collapsed-content {
+  margin-left: 60px;
+}

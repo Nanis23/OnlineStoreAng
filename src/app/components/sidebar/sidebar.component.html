@@ -1,0 +1,35 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light sidebar">
+  <button class="btn btn-primary mb-3" (click)="toggleSidebar()">
+    <i [class]="collapsed ? 'bi bi-arrow-right-square' : 'bi bi-arrow-left-square'"></i>
+  </button>
+  
+  <div [ngClass]="{ 'collapse': collapsed }">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <span class="fs-4">Menu</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-dark">
+          Users
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-dark">
+          Products
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-dark">
+          Reports
+        </a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+</div>
