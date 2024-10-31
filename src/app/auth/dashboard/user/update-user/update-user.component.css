@@ -1,31 +1,26 @@
-/* update-user.component.css */
 .container {
-  max-width: 800px; /* Restrict maximum width */
-  margin: auto; /* Center container */
-  padding-top: 20px; /* Padding at the top */
+  margin-top: 20px;
+  padding-bottom: 50px; /* Add padding to prevent overlap with the footer */
 }
 
-.form-container {
+.table {
+  margin-bottom: 20px;
+}
+
+.update-form {
   display: flex;
-  flex-direction: column; /* Arrange items in a column */
-  justify-content: center; /* Center items vertically */
-  margin-top: 20px; /* Space above the form */
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.form-container form {
-  margin-bottom: 20px; /* Space below the form to avoid overlap with footer */
+.form-group {
+  width: 100%; /* Full width for each input */
+  max-width: 400px; /* Limit the max width of the form inputs */
+  margin-bottom: 15px; /* Space between form elements */
 }
 
-.user-row {
-  cursor: pointer; /* Change cursor to pointer */
-  transition: background-color 0.2s; /* Smooth background color transition */
-}
-
-.user-row:hover {
-  background-color: #f5f5f5; /* Highlight row on hover */
-}
-
-/* Submit button specific styling */
-.btn-success {
-  margin-top: 15px; /* Margin above the button */
+button {
+  margin-top: 10px;
+  width: 150px; /* Adjust width of the submit button */
 }
