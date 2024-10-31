@@ -1,37 +1,59 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User, UserService } from '../../../services/user.service';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService, User } from '../../../services/user.service';// Adjust the import as necessary
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-update-user',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
+  standalone:true,
+  imports:[
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css'] // Ensure this is plural (styleUrls)
+  styleUrls: ['./update-user.component.css']
 })
-export class UpdateUserComponent implements OnInit { // Implement OnInit interface
+export class UpdateUserComponent implements OnInit {
+  users: User[] = [];
+  updateForm: FormGroup;
 
-  users : User[]=[] // Use User interface
-
-  constructor(private userService: UserService) {}
-
-  ngOnInit(): void {
-    this.fetchUsers();
+  constructor(private userService: UserService, private fb: FormBuilder) {
+    this.updateForm = this.fb.group({
+      email: [''],
+      city: [''],
+      zipCode: [''],
+      roli: [''],
+      password: [''] // Optional password field
+    });
   }
 
-  fetchUsers(): void {
-    this.userService.getUsers().subscribe({
-      next: (data) => {
-        this.users = data; // Assign fetched user data to the users array
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.userService.getUsers().subscribe(
+      (data: User[]) => {
+        this.users = data; // Assign the data to the users property
+        console.log('Fetched Users:', this.users); // Log fetched users
       },
-      error: (err) => {
-        console.error('Error fetching users:', err); // Log any errors
-      },
+      error => {
+        console.error('Error fetching users:', error); // Log error if any
+      }
+    );
+  }
+
+  selectUser(user: User): void {
+    this.updateForm.patchValue({
+      email: user.email,
+      city: user.city,
+      zipCode: user.zipCode,
+      roli: user.roli,
+      password: '' // Reset password field
     });
+  }
+
+  submitUpdate(): void {
+    // Update logic here
   }
 }
