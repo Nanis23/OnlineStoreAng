@@ -1,47 +1,56 @@
-<!-- update-user.component.html -->
 <div class="container">
     <h2>User Management</h2>
-  
     <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Email</th>
-          <th>City</th>
-          <th>Zip Code</th>
-          <th>Role ID</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users" (click)="selectUser(user)" class="user-row">
-          <td>{{ user.id }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.city }}</td>
-          <td>{{ user.zipCode }}</td>
-          <td>{{ user.roli }}</td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>Role ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users" (click)="onSelectUser(user)">
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.city }}</td>
+                <td>{{ user.zipCode }}</td>
+                <td>{{ user.roli }}</td>
+            </tr>
+        </tbody>
     </table>
-  
-    <div class="form-container">
-      <form [formGroup]="updateForm" (ngSubmit)="submitUpdate()">
+
+    <form [formGroup]="updateForm" (ngSubmit)="submitUpdate()" class="form-container">
+        <label>ID:</label>
+        <input formControlName="id" type="text" class="form-control" >
+        
         <label>Email:</label>
         <input formControlName="email" type="text" class="form-control">
-        
+        <div *ngIf="updateForm.errors?.['invalidEmail']" class="text-danger">
+            Invalid email format.
+        </div>
+
         <label>City:</label>
         <input formControlName="city" type="text" class="form-control">
-        
+        <div *ngIf="updateForm.errors?.['emptyCity']" class="text-danger">
+            City cannot be empty.
+        </div>
+
         <label>Zip Code:</label>
         <input formControlName="zipCode" type="text" class="form-control">
-        
-        <label>Role:</label>
-        <input formControlName="roli" type="text" class="form-control">
-        
+        <div *ngIf="updateForm.errors?.['emptyZipCode']" class="text-danger">
+            Zip Code cannot be empty.
+        </div>
+
         <label>Password (Optional):</label>
         <input formControlName="password" type="password" class="form-control">
         
+        <label>Role:</label>
+        <select formControlName="roli" class="form-control">
+            <option *ngFor="let role of roles" [value]="role.id">{{ role.roleName }}</option>
+        </select>
+
         <button type="submit" class="btn btn-success mt-3">Submit Changes</button>
-      </form>
-    </div>
-  </div>
-  
+    </form>
+</div>

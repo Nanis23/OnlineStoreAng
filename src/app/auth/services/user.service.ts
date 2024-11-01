@@ -9,13 +9,21 @@ const BASE_URL = "http://localhost:8080"; // Update to your endpoint
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Method to retrieve users
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${BASE_URL}/api/user/allUsers`).pipe(
       catchError(this.handleError) // Add error handling
     );
+  }
+
+  // Method to update user
+  updateUser(user: User): Observable<any> {
+    return this.http.put(`${BASE_URL}/api/user/profile/${user.id}`, user)
+      .pipe(
+        catchError(this.handleError) // Add error handling
+      ); // Adjust the endpoint as needed
   }
 
   // Error handling method
