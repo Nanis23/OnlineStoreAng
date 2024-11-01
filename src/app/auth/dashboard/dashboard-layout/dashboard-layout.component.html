@@ -11,31 +11,28 @@
           User
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item"  (click)="showComponent('registerUser')">Register User</a></li>
-          <li><a class="dropdown-item"  (click)="showComponent('updateUser')">Update User</a></li>
-          <li><a class="dropdown-item"  (click)="showComponent('deleteUser')">Delete User</a></li>
+          <li><a class="dropdown-item"  (click)="showComponent('user')">Menaxho Userat</a></li>
+          
         </ul>
       </div>
       <br>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Categories
+          Kategori
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Register Category</a></li>
-          <li><a class="dropdown-item" href="#">Update Category</a></li>
-          <li><a class="dropdown-item" href="#">Delete Category</a></li>
+          <li><a class="dropdown-item"  (click)="showComponent('listCategory')">Menaxho Kategorite</a></li>
+        
         </ul>
       </div>
       <br>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Orders
+         Produkte
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">View Orders</a></li>
-          <li><a class="dropdown-item" href="#">Search Order</a></li>
-          <li><a class="dropdown-item" href="#">View Order Line</a></li>
+          <li><a class="dropdown-item"  (click)="showComponent('product')">Menaxho Produkte</a></li>
+        
         </ul>
       </div>
     </div>
@@ -47,14 +44,21 @@
     <app-header></app-header>
 
     <div class="content">
-      <app-register-user *ngIf="activeComponent === 'registerUser'"></app-register-user>
-      <app-update-user *ngIf="activeComponent === 'updateUser'"></app-update-user>
-      <app-delete-user *ngIf="activeComponent === 'deleteUser'"></app-delete-user>
+      <app-user *ngIf="activeComponent === 'user'"></app-user>
+      <app-category *ngIf="activeComponent === 'listCategory'"></app-category>
+      <app-product  *ngIf="activeComponent === 'product'"></app-product>
+     
       <!-- Add additional *ngIf blocks as needed for other components -->
     </div>
 
     <!-- Main Page Content -->
     <div class="content">
+ 
+      <!-- <app-update-categorie *ngIf="activeComponent === 'updateCategory' " ></app-update-categorie> -->
+      <!-- <app-delete-categorie *ngIf="activeComponent === 'deleteCategory' " ></app-delete-categorie> -->
+     
+      
+      
       <!-- Add your main page content here -->
     </div>
 

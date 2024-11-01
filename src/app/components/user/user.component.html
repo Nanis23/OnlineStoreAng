@@ -1,0 +1,59 @@
+<div class="container">
+    <h2 class="text-center">Menaxho Përdoruesit</h2>
+  
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div>
+        <input type="hidden" formControlName="id">
+        <label>Email:</label>
+        <input type="email" formControlName="email" required>
+      </div>
+      <div>
+        <label>City:</label>
+        <input type="text" formControlName="city" required>
+      </div>
+      <div>
+        <label>Zip Code:</label>
+        <input type="text" formControlName="zipCode" required>
+      </div>
+      <div>
+        <label>Roli:</label>
+        <select formControlName="roli">
+          <option value="0">User</option>
+          <option value="1">Admin</option>
+        </select>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" formControlName="password" required>
+      </div>
+      <button type="submit">{{ selectedUser ? 'Update' : 'Register' }}</button>
+      <button type="button" (click)="resetForm()">Anulo</button>
+    </form>
+  
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Zip Code</th>
+          <th>Roli</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.city }}</td>
+          <td>{{ user.zipCode }}</td>
+          <td>{{ user.roli === 0 ? 'User' : 'Admin' }}</td>
+          <td>
+            <button (click)="selectUser(user)">Edit</button>
+            <button (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

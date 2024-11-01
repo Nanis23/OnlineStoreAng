@@ -1,0 +1,89 @@
+<div class="container">
+  <br>
+  <h3 class="title">Menaxhimi i Produkteve</h3>
+  <form (ngSubmit)="addProduct()" class="product-form">
+
+    <div class="form-group">
+        <input type="text" id="productTitle" [(ngModel)]="newProduct.title" name="title" required placeholder="Titulli i produktit" />
+    </div>
+    <div class="form-group">
+        <input type="text" id="productDescription" [(ngModel)]="newProduct.description" name="description" required placeholder="Përshkrimi i produktit" />
+    </div>
+    <div class="form-group">
+        <input type="number" id="productPrice" [(ngModel)]="newProduct.price" name="price" required placeholder="Çmimi" />
+    </div>
+    <div class="form-group">
+        <input type="number" id="productAvailability" [(ngModel)]="newProduct.availability" name="availability" required placeholder="Disponueshmëria" />
+    </div>
+    <div class="form-group">
+        <select [(ngModel)]="newProduct.productType" name="productType" required>
+            <option value="" disabled selected>Tipi i produktit</option>
+            <option *ngFor="let type of productTypes" [value]="type">{{ type }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <select [(ngModel)]="newProduct.categoryId" name="categoryId" required>
+            <option value="" disabled selected>Kategoria</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <select [(ngModel)]="newProduct.authorId" name="authorId" required>
+            <option value="" disabled selected>Autori</option>
+            <option *ngFor="let author of authors" [value]="author.id">{{ author.firstName }} {{ author.lastName }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Shto Produkt</button>
+    </div>
+</form>
+
+  <br>
+
+  <div class="search-container">
+    <input type="text" placeholder="Kërko për produkt..." [(ngModel)]="searchTerm" />
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Titulli</th>
+        <th>Përshkrimi</th>
+        <th>Çmimi</th>
+        <th>Disponueshmëria</th>
+        <th>Tipi</th>
+        <th>Veprimet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts()">
+        <td>{{ product.id }}</td>
+        <td *ngIf="editingProduct?.id !== product.id">{{ product.title }}</td>
+        <td *ngIf="editingProduct?.id !== product.id">{{ product.description }}</td>
+        <td *ngIf="editingProduct?.id !== product.id">{{ product.price }}</td>
+        <td *ngIf="editingProduct?.id !== product.id">{{ product.availability }}</td>
+        <td *ngIf="editingProduct?.id !== product.id">{{ product.productType }}</td>
+
+        <td *ngIf="editingProduct?.id === product.id">
+          <td *ngIf="editingProduct?.id === product.id">
+            <input [ngModel]="editingProduct?.title" (ngModelChange)="updateEditingProductTitle($event)" />
+            <td *ngIf="editingProduct && editingProduct.id === product.id">
+              <input [(ngModel)]="editingProduct.title" placeholder="Titulli" />
+              <input [(ngModel)]="editingProduct.description" placeholder="Përshkrimi" />
+              <input type="number" [(ngModel)]="editingProduct.price" placeholder="Çmimi" />
+              <input type="number" [(ngModel)]="editingProduct.availability" placeholder="Disponueshmëria" />
+              <select [(ngModel)]="editingProduct.productType">
+                  <option *ngFor="let type of productTypes" [value]="type">{{ type }}</option>
+              </select>
+          </td>
+          
+        <td>
+          <button *ngIf="editingProduct?.id !== product.id" (click)="startEditing(product)" class="btn btn-secondary">Përditëso</button>
+          <button *ngIf="editingProduct?.id === product.id" (click)="updateProduct()" class="btn btn-success">Ruaj</button>
+          <button *ngIf="editingProduct?.id === product.id" (click)="cancelEditing()" class="btn btn-warning">Anulo</button>
+          <button (click)="deleteProduct(product.id)" class="btn btn-danger">Fshi</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
