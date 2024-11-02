@@ -1,7 +1,40 @@
-.card-group{
-    margin-left: 30px;
-    margin-right: 30px;
-}
-.card{
-    margin-left: 20px;
-}
+/* product.component.css */
+
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    color: #007bff;
+  }
+  
+  .card-text {
+    color: #555;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
