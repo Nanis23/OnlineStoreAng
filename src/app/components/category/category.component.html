@@ -1,0 +1,47 @@
+<div class="container">
+<br>
+  <h3 class="title" >Menaxhimi i Kategorive</h3>
+  <form (ngSubmit)="addCategory()">
+   
+    <input type="text" id="categoryName" [(ngModel)]="newCategory.name" name="name" required placeholder="Emri i kategorise"/>
+    <button type="submit" class="btn btn-primary" >Shto Kategori</button>
+  </form>
+<br>
+
+
+
+
+  <div class="search-container">
+    <input type="text" placeholder="Kërko për kategori..." [(ngModel)]="searchTerm" />
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Emri</th>
+        <th>Veprimet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of filteredCategories()">
+        <td>{{ category.id }}</td>
+        
+        <td *ngIf="editingCategory?.id !== category.id">{{ category.name }}</td>
+        
+        <td *ngIf="editingCategory?.id === category.id">
+          <input [ngModel]="editingCategory?.name" (ngModelChange)="updateEditingCategoryName($event)" />
+        </td>
+        
+
+        <td>
+          <button *ngIf="editingCategory?.id !== category.id" (click)="startEditing(category)" class="btn btn-secondary">Përditëso</button>
+          <button *ngIf="editingCategory?.id === category.id" (click)="updateCategory()" class="btn btn-success">Ruaj</button>
+          <button *ngIf="editingCategory?.id === category.id" (click)="cancelEditing()" class="btn btn-warning">Anulo</button>
+          <button (click)="deleteCategory(category.id)" class="btn btn-danger">Fshi</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>

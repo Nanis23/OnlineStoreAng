@@ -9,6 +9,10 @@ import { DashboardLayoutComponent } from './auth/dashboard/dashboard-layout/dash
 import { RegisterUserComponent } from './auth/dashboard/user/register-user/register-user.component';
 import { UpdateUserComponent } from './auth/dashboard/user/update-user/update-user.component';
 import { DeleteUserComponent } from './auth/dashboard/user/delete-user/delete-user.component';
+import { CategoryComponent } from './components/category/category.component';
+import { UserComponent } from './components/user/user.component';
+import { ProductComponent } from './components/product/product.component'; 
+
 
 export const routes: Routes = [
     { path: "registration", component: RegistrationComponent },
@@ -19,7 +23,10 @@ export const routes: Routes = [
     { path: "dashboard", component: DashboardLayoutComponent },
     { path: "registerUser", component: RegisterUserComponent },
     { path: "updateUser", component: UpdateUserComponent },
-    { path: "deleteUSer", component: DeleteUserComponent }
+    { path: "deleteUSer", component: DeleteUserComponent },
+    { path: "listCategory",component:CategoryComponent},
+    { path: "user",component:UserComponent},
+    { path: "product",component:ProductComponent}
 ];
 
 @NgModule({

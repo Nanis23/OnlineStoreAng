@@ -1,0 +1,76 @@
+<div class="container">
+  <h3 class="title">Menaxhimi i Userave</h3>
+
+  <!-- User Registration Form -->
+  <!-- <form (ngSubmit)="registerUser()" class="user-form">
+    <div class="form-group">
+      <input type="email" id="userEmail" [(ngModel)]="newUser.email" name="email" required placeholder="Email" />
+    </div>
+    <div class="form-group">
+      <input type="text" id="userCity" [(ngModel)]="newUser.city" name="city" required placeholder="Qyteti" />
+    </div>
+    <div class="form-group">
+      <input type="text" id="userZipCode" [(ngModel)]="newUser.zipCode" name="zipCode" required placeholder="Kodi Postal" />
+    </div>
+    <div class="form-group">
+      <select [(ngModel)]="newUser.roli" name="role" required>
+        <option value="" disabled selected>Zgjidh Rolin</option>
+        <option value="1">User</option>
+        <option value="2">Admin</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Regjistro Përdorues</button>
+    </div>
+  </form>
+
+  <br> -->
+
+
+  <div class="search-container">
+    <input type="text" placeholder="Kërko për përdorues..." [(ngModel)]="searchTerm" />
+  </div>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Qyteti</th>
+        <th>Kodi Postal</th>
+        <th>Roli</th>
+        <th>Veprimet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUsers()">
+        <td>{{ user.id }}</td>
+        <td *ngIf="editingUser?.id !== user.id">{{ user.email }}</td>
+        <td *ngIf="editingUser?.id !== user.id">{{ user.city }}</td>
+        <td *ngIf="editingUser?.id !== user.id">{{ user.zipCode }}</td>
+        <td *ngIf="editingUser?.id !== user.id">{{ user.roli }}</td>
+
+    
+        <ng-container *ngIf="editingUser?.id === user.id">
+          <td><input  [ngModel]="editingUser?.email" (ngModelChange)="updateEditingUserEmail($event)" placeholder="Email" /></td>
+          <td><input  [ngModel]="editingUser?.city" (ngModelChange)="updateEditingUserCity($event)"placeholder="Qyteti" /></td>
+          <td><input  [ngModel]="editingUser?.zipCode" (ngModelChange)="updateEditingUserZipCode($event)" placeholder="Kodi Postal" /></td>
+          <td>
+            <select  [ngModel]="editingUser?.roli" (ngModelChange)="updateEditingUserRoli($event)">
+              <option value="1">User</option>
+              <option value="2">Admin</option>
+            </select>
+          </td>
+        </ng-container>
+
+        <td>
+          <button *ngIf="editingUser?.id !== user.id" (click)="startEditing(user)" class="btn btn-secondary">Edito</button>
+          <button *ngIf="editingUser?.id === user.id" (click)="updateUser()" class="btn btn-success">Ruaj</button>
+          <button *ngIf="editingUser?.id === user.id" (click)="cancelEditing()" class="btn btn-warning">Anulo</button>
+          <button (click)="deleteUser(user.id)" class="btn btn-danger">Fshi</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

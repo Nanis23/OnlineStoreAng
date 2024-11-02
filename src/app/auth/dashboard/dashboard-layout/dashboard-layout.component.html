@@ -1,22 +1,80 @@
 <div class="dashboard-layout">
   <!-- Sidebar with a toggle button at the top -->
-  <app-sidebar></app-sidebar>
+  <div [ngClass]="{'sidebar': true, 'collapsed': sidebarCollapsed}">
+    <button class="btn btn-primary toggle-button" (click)="toggleSidebar()">
+      <span *ngIf="sidebarCollapsed">☰</span>
+      <span *ngIf="!sidebarCollapsed">×</span>
+    </button>
+    <div *ngIf="!sidebarCollapsed" class="sidebar-content">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          User
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"  (click)="showComponent('user')">Menaxho Userat</a></li>
+          
+        </ul>
+      </div>
+      <br>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Kategori
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"  (click)="showComponent('listCategory')">Menaxho Kategorite</a></li>
+        
+        </ul>
+      </div>
+      <br>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         Produkte
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"  (click)="showComponent('product')">Menaxho Produkte</a></li>
+        
+        </ul>
+      </div>
+
+      <br>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         Order
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"  (click)="showComponent('order')">Menaxho Order</a></li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <!-- Main content area -->
-  <div class="main-content" [ngClass]="{'collapsed-content': sidebarCollapsed}">
+  <div [ngClass]="{'main-content': true, 'collapsed-content': sidebarCollapsed}">
     <!-- Header -->
     <app-header></app-header>
 
     <div class="content">
-      <app-register-user *ngIf="activeComponent === 'registerUser'"></app-register-user>
-      <app-update-user *ngIf="activeComponent === 'updateUser'"></app-update-user>
-      <app-delete-user *ngIf="activeComponent === 'deleteUser'"></app-delete-user>
+      <app-user *ngIf="activeComponent === 'user'"></app-user>
+      <app-category *ngIf="activeComponent === 'listCategory'"></app-category>
+      <app-product  *ngIf="activeComponent === 'product'"></app-product>
+      <app-order  *ngIf="activeComponent === 'order'"></app-order>
+     
       <!-- Add additional *ngIf blocks as needed for other components -->
     </div>
 
-    
+    <!-- Main Page Content -->
+    <div class="content">
+ 
+      <!-- <app-update-categorie *ngIf="activeComponent === 'updateCategory' " ></app-update-categorie> -->
+      <!-- <app-delete-categorie *ngIf="activeComponent === 'deleteCategory' " ></app-delete-categorie> -->
+     
+      
+      
+      <!-- Add your main page content here -->
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
   </div>
-
-  <app-footer class="footer"></app-footer>
 </div>
-

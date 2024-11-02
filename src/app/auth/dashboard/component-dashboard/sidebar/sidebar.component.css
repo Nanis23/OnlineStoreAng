@@ -1,34 +1,19 @@
-/* sidebar.component.css */
-/* sidebar.component.css */
-
 .sidebar {
-  width: 250px; /* Set the width of the sidebar */
-  height: calc(100vh - 60px - 40px); /* Full height minus the header and footer heights */
-  background-color: white; /* Light background color for the sidebar */
-  transition: width 0.3s; /* Smooth transition for width change */
+  width: 250px;
+ height: auto;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
 }
 
-.collapsed {
-  width: 60px; /* Reduced width for collapsed state */
-  height: calc(100vh - 60px - 40px); /* Keep height consistent when collapsed */
+.sidebar.collapsed {
+  width: 80px;
 }
 
-.toggle-button {
-  width: 100%; /* Full width for the toggle button */
-  background-color: #007bff; /* Primary color for the toggle button */
-  color: white; /* Text color */
-  border: none; /* Remove border */
-  padding: 10px; /* Add padding */
-}
-
-.sidebar-content {
-  padding: 20px; /* Add padding inside sidebar content */
-}
-
-.dropdown {
-  margin-bottom: 15px; /* Space between dropdowns */
-}
-
-.fixed-width {
-  width: 100%; /* Full width for dropdown buttons */
+.nav-link.active {
+  background-color: #0d6efd;
+  color: #fff;
 }
