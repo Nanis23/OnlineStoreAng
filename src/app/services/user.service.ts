@@ -32,6 +32,7 @@ export class UserService {
   updateUser(user: UserDTO): Observable<UserDTO> {
     return this.http.put<UserDTO>(`${this.baseUrl}/profile`, user);
   }
+  
 
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);

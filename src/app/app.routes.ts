@@ -12,6 +12,9 @@ import { DeleteUserComponent } from './auth/dashboard/user/delete-user/delete-us
 import { CategoryComponent } from './components/category/category.component';
 import { UserComponent } from './components/user/user.component';
 import { ProductComponent } from './components/product/product.component'; 
+import { WebsiteHeaderComponent } from './website/website-header/website-header.component';
+import { WebsiteBodyComponent } from './website/website-body/website-body.component';
+import { WebsiteAboutComponent } from './website/website-about/website-about.component';
 
 
 export const routes: Routes = [
@@ -26,7 +29,10 @@ export const routes: Routes = [
     { path: "deleteUSer", component: DeleteUserComponent },
     { path: "listCategory",component:CategoryComponent},
     { path: "user",component:UserComponent},
-    { path: "product",component:ProductComponent}
+    { path: "product",component:ProductComponent},
+    { path:"websiteHeader",component:WebsiteHeaderComponent},
+    { path:"website",component:WebsiteBodyComponent},
+    { path:"websiteAbout",component:WebsiteAboutComponent}
 ];
 
 @NgModule({

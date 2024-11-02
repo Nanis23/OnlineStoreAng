@@ -38,6 +38,8 @@ export class UserComponent implements OnInit {
     }
   }
 
+  
+
   // Register or update a user based on whether we're editing
   registerOrUpdateUser(): void {
     if (this.editingUser) {
