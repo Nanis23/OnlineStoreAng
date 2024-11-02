@@ -1,77 +1,109 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService, User } from '../../services/user.service';
+import { UserService, UserDTO } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrls: ['./user.component.css']
 })
-
 export class UserComponent implements OnInit {
-  users: User[] = [];
-  userForm: FormGroup;
-  selectedUser: User | null = null;
+  users: UserDTO[] = [];
+  newUser: UserDTO = { id: 0, email: '', city: '', zipCode: '', roli: 0 };
+  editingUser: UserDTO | null = null;
+  searchTerm: string = '';
 
-  constructor(private userService: UserService, private fb: FormBuilder) {
-    this.userForm = this.fb.group({
-      id: [null],
-      email: [''],
-      city: [''],
-      zipCode: [''],
-      roli: [0], // Default to USER
-      password: ['']
-    });
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.loadUsers();
   }
 
+  // Load users from the service
   loadUsers(): void {
-    this.userService.getAllUsers().subscribe(data => {
-      this.users = data;
+    this.userService.getAllUsers().subscribe((users) => {
+      this.users = users;
     });
   }
 
-  onSubmit(): void {
-    if (this.userForm.valid) {
-      if (this.selectedUser) {
-        // Update user
-        this.userService.updateUser(this.userForm.value).subscribe(() => {
-          this.loadUsers();
-          this.resetForm();
-        });
-      } else {
-        // Register new user
-        this.userService.registerUser(this.userForm.value).subscribe(() => {
-          this.loadUsers();
-          this.resetForm();
-        });
-      }
+  updateUser(): void {
+    if (this.editingUser) {
+      this.userService.updateUser(this.editingUser).subscribe(() => {
+        this.loadUsers();
+        this.cancelEditing(); // Reset editing user after update
+      });
     }
   }
 
-  selectUser(user: User): void {
-    this.selectedUser = user;
-    this.userForm.patchValue(user);
+  // Register or update a user based on whether we're editing
+  registerOrUpdateUser(): void {
+    if (this.editingUser) {
+      // Update existing user
+      this.userService.updateUser(this.editingUser).subscribe(() => {
+        this.loadUsers();
+        this.editingUser = null; // Clear edit mode after update
+        this.resetNewUser();
+      });
+    } else {
+      // Register a new user
+      this.userService.registerUser(this.newUser).subscribe(() => {
+        this.loadUsers();
+        this.resetNewUser(); // Reset form after adding new user
+      });
+    }
   }
 
- 
-  deleteUser(id: number): void {
-    this.userService.deleteUser(id).subscribe(
-      () => {
-        this.users = this.users.filter(users => users.id !== id);
-      },
-      (error) => console.error('Error while deleting user:', error)
+  // Reset newUser object
+  resetNewUser(): void {
+    this.newUser = { id: 0, email: '', city: '', zipCode: '', roli: 0 };
+  }
+
+  // Start editing a user
+  startEditing(user: UserDTO): void {
+    this.editingUser = { ...user }; // Create a copy of the user for editing
+  }
+
+  // Cancel editing
+  cancelEditing(): void {
+    this.editingUser = null;
+  }
+
+  // Delete a user
+  deleteUser(userId: number): void {
+    this.userService.deleteUser(userId).subscribe(() => {
+      this.loadUsers();
+    });
+  }
+
+  // Filter users based on search term
+  filteredUsers(): UserDTO[] {
+    return this.users.filter((user) =>
+      user.email.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
-  resetForm(): void {
-    this.selectedUser = null;
-    this.userForm.reset();
+  // Update methods for individual fields
+  updateEditingUserRoli(roli: number): void {
+    if (this.editingUser) {
+      this.editingUser.roli = roli;
+    }
+  }
+  updateEditingUserZipCode(zipCode: string): void {
+    if (this.editingUser) {
+      this.editingUser.zipCode = zipCode;
+    }
+  }
+  updateEditingUserCity(city: string): void {
+    if (this.editingUser) {
+      this.editingUser.city = city;
+    }
+  }
+  updateEditingUserEmail(email: string): void {
+    if (this.editingUser) {
+      this.editingUser.email = email;
+    }
   }
 }
