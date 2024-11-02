@@ -1,4 +1,35 @@
-.navbar {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
+/* dashboard-layout.component.css */
+
+.dashboard-layout {
+  display: flex;
+  position: relative; /* Establishes a positioning context */
+}
+
+.header {
+  position: fixed; /* Fixes the header at the top of the viewport */
+  top: 0; /* Aligns it to the top */
+  left: 0; /* Aligns it to the left */
+  right: 0; /* Stretches it to the right */
+  z-index: 1000; /* Ensures the header is above other elements */
+  background-color: #fff; /* Background color of the header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+.app-sidebar {
+  margin-top: 60px; /* Adjust for header height if needed */
+}
+
+.main-content {
+  margin-top: 60px; /* Adjust for header height */
+  display: flex; /* Ensure the main content layout is flexible */
+  flex-direction: column; /* Stack items vertically */
+  flex-grow: 1; /* Allows it to take the available space */
+}
+
+.collapsed-content {
+  margin-left: 60px; /* Adjust for collapsed sidebar width */
+}
+
+.navbar-nav {
+  margin-left: 20px; /* Adjust this value as needed */
+}

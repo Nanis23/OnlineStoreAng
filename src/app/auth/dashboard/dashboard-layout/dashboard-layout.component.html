@@ -1,48 +1,9 @@
 <div class="dashboard-layout">
   <!-- Sidebar with a toggle button at the top -->
-  <div [ngClass]="{'sidebar': true, 'collapsed': sidebarCollapsed}">
-    <button class="btn btn-primary toggle-button" (click)="toggleSidebar()">
-      <span *ngIf="sidebarCollapsed">☰</span>
-      <span *ngIf="!sidebarCollapsed">×</span>
-    </button>
-    <div *ngIf="!sidebarCollapsed" class="sidebar-content">
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          User
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item"  (click)="showComponent('registerUser')">Register User</a></li>
-          <li><a class="dropdown-item"  (click)="showComponent('updateUser')">Update User</a></li>
-          <li><a class="dropdown-item"  (click)="showComponent('deleteUser')">Delete User</a></li>
-        </ul>
-      </div>
-      <br>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Categories
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Register Category</a></li>
-          <li><a class="dropdown-item" href="#">Update Category</a></li>
-          <li><a class="dropdown-item" href="#">Delete Category</a></li>
-        </ul>
-      </div>
-      <br>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Orders
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">View Orders</a></li>
-          <li><a class="dropdown-item" href="#">Search Order</a></li>
-          <li><a class="dropdown-item" href="#">View Order Line</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <app-sidebar></app-sidebar>
 
   <!-- Main content area -->
-  <div [ngClass]="{'main-content': true, 'collapsed-content': sidebarCollapsed}">
+  <div class="main-content" [ngClass]="{'collapsed-content': sidebarCollapsed}">
     <!-- Header -->
     <app-header></app-header>
 
@@ -53,12 +14,9 @@
       <!-- Add additional *ngIf blocks as needed for other components -->
     </div>
 
-    <!-- Main Page Content -->
-    <div class="content">
-      <!-- Add your main page content here -->
-    </div>
-
-    <!-- Footer -->
-    <app-footer></app-footer>
+    
   </div>
+
+  <app-footer class="footer"></app-footer>
 </div>
+

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { ComponentStateService } from './component-state-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,9 +13,15 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  collapsed = false;
+  sidebarCollapsed: boolean = false;
+
+  constructor(private componentStateService: ComponentStateService) {}
 
   toggleSidebar() {
-    this.collapsed = !this.collapsed;
+    this.sidebarCollapsed = !this.sidebarCollapsed;
+  }
+
+  showComponent(component: string) {
+    this.componentStateService.setActiveComponent(component);
   }
 }
