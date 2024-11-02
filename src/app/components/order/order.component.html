@@ -1,0 +1,46 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Adresa e Dërgimit</th>
+        <th>Çmimi Total</th>
+        <th>Statusi</th>
+        <th>Veprimet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.email }}</td> 
+        <td *ngIf="editingOrder?.id !== order.id">{{ order.deliveryAddress }}</td>
+        <td *ngIf="editingOrder?.id === order.id">
+        
+          <input placeholder="Adresa e Dërgimit" [ngModel]="editingOrder?.deliveryAddress" (ngModelChange)="updateEditingOrderDeliveryAddress($event)" />
+        </td>
+  
+        <td *ngIf="editingOrder?.id !== order.id">{{ order.totalCost }}</td>
+        <td *ngIf="editingOrder?.id === order.id">
+       
+
+          <input placeholder="Çmimi Total" [ngModel]="editingOrder?.totalCost" (ngModelChange)="updateEditingOrderTotalCost($event)" />
+        </td>
+  
+        <td *ngIf="editingOrder?.id !== order.id">{{ order.status }}</td>
+        <td *ngIf="editingOrder && editingOrder.id === order.id">
+          <select [(ngModel)]="editingOrder.status">
+            <option *ngFor="let status of orderStatuses" [value]="status">{{ status }}</option>
+          </select>
+        </td>
+        
+  
+        <td>
+          <button *ngIf="editingOrder?.id !== order.id" (click)="editOrder(order)" class="btn btn-secondary">Përditëso</button>
+          <button *ngIf="editingOrder?.id === order.id" (click)="updateOrder()" class="btn btn-success">Ruaj</button>
+          <button *ngIf="editingOrder?.id === order.id" (click)="cancelEditing()" class="btn btn-warning">Anulo</button>
+          <button (click)="deleteOrder(order.id)" class="btn btn-danger">Fshi</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

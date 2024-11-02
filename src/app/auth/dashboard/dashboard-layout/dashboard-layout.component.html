@@ -35,6 +35,17 @@
         
         </ul>
       </div>
+
+      <br>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         Order
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"  (click)="showComponent('order')">Menaxho Order</a></li>
+        
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -47,6 +58,7 @@
       <app-user *ngIf="activeComponent === 'user'"></app-user>
       <app-category *ngIf="activeComponent === 'listCategory'"></app-category>
       <app-product  *ngIf="activeComponent === 'product'"></app-product>
+      <app-order  *ngIf="activeComponent === 'order'"></app-order>
      
       <!-- Add additional *ngIf blocks as needed for other components -->
     </div>

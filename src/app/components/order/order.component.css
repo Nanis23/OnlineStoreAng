@@ -1,0 +1,60 @@
+.order-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between elements */
+    margin: 20px 0; /* Margin around the form */
+}
+
+.form-group {
+    flex: 1; /* Each input will take equal space */
+    min-width: 150px; /* Minimum width for responsive design */
+}
+
+input, select {
+    width: 100%; /* Full width of the parent */
+    padding: 10px; /* Padding inside the input */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+}
+
+
+.search-container {
+    margin-bottom: 20px; 
+    margin-left: 70%;
+  }
+  .title{
+    text-align: center;
+    margin-bottom: 50px;
+
+  }
+  .search-container input {
+    width: 300px; 
+    padding: 8px; 
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+  }
+
+  .product-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    margin: 20px; 
+}
+
+.form-group {
+    flex: 1; 
+    min-width: 150px; 
+}
+
+input, select {
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+
+
+.btn:hover {
+    background-color: #0056b3; 
+}

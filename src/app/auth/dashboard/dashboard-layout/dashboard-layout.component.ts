@@ -11,6 +11,7 @@ import { DeleteUserComponent } from "../user/delete-user/delete-user.component";
 import { CategoryComponent } from "../../../components/category/category.component";
 import { UserComponent } from "../../../components/user/user.component";
 import { ProductComponent } from "../../../components/product/product.component";
+import { OrderComponent } from "../../../components/order/order.component";
 
 
 @Component({
@@ -23,7 +24,8 @@ import { ProductComponent } from "../../../components/product/product.component"
     DeleteUserComponent,
     CategoryComponent,
     UserComponent,
-    ProductComponent
+    ProductComponent,
+    OrderComponent
 ],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.css'
