@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-const BASE_URL = "http://localhost:8080"; // Update to your endpoint
+const BASE_URL = "http://localhost:8080"; 
 
 @Injectable({
   providedIn: 'root',
@@ -11,43 +11,45 @@ const BASE_URL = "http://localhost:8080"; // Update to your endpoint
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  // Method to retrieve users
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${BASE_URL}/api/user/allUsers`).pipe(
-      catchError(this.handleError) // Add error handling
+      catchError(this.handleError) 
     );
   }
 
-  // Method to update user
-  updateUser(user: User): Observable<any> {
-    return this.http.put(`${BASE_URL}/api/user/profile/${user.id}`, user)
-      .pipe(
-        catchError(this.handleError) // Add error handling
-      ); // Adjust the endpoint as needed
-  }
 
-  // Error handling method
+
+updateUser(user: User): Observable<any> {
+  return this.http.put(`${BASE_URL}/api/user/profile`, user)
+    .pipe(
+      catchError(this.handleError)
+    ); 
+}
+
+
+
+  
   private handleError(error: HttpErrorResponse) {
-    console.error('An error occurred:', error); // Log the error to the console
-    return throwError('Something went wrong; please try again later.'); // Return a user-friendly message
+    console.error('An error occurred:', error); 
+    return throwError('Something went wrong; please try again later.'); 
   }
 
   getRoles(): Observable<Role[]> {
-    return this.http.get<Role[]>(`${BASE_URL}/api/roles`); // Adjust the endpoint as needed
+    return this.http.get<Role[]>(`${BASE_URL}/api/roles`);
   }
 }
 
-// User interface definition
+
 export interface User {
-  id: number; // Ensure this is defined
+  id: number;
   email: string;
   city: string;
   zipCode: string;
-  password: string; // Consider removing this from the response for security
-  roli: number; // Ensure this corresponds to the role ID
+  password: string; 
+  roli: number; 
 }
 
 export interface Role {
   id: number;
-  roleName: string; // Ensure this matches your Role entity
+  roleName: string; 
 }

@@ -90,35 +90,37 @@ export class UpdateUserComponent implements OnInit {
   // Submit updated user data
   submitUpdate(): void {
     if (this.updateForm.valid) {
-      const updatedUser: User = {
-        id: this.updateForm.getRawValue().id,
-        email: this.updateForm.value.email,
-        city: this.updateForm.value.city,
-        zipCode: this.updateForm.value.zipCode,
-        password: this.updateForm.value.password || null,
-        roli: this.updateForm.value.roli,
-      };
+        const updatedUser: User = {
+            id: this.updateForm.getRawValue().id, // Ensure id is included
+            email: this.updateForm.value.email,
+            city: this.updateForm.value.city,
+            zipCode: this.updateForm.value.zipCode,
+            password: this.updateForm.value.password || null, // Send null if password is empty
+            roli: this.updateForm.value.roli,
+        };
 
-      this.userService.updateUser(updatedUser).subscribe({
-        next: (res) => {
-          console.log('User updated successfully:', res);
-          this.loadUsers();
-          this.updateForm.reset();
-        },
-        error: (err) => {
-          console.error('Update failed:', err);
-        }
-      });
+        this.userService.updateUser(updatedUser).subscribe({
+            next: (res) => {
+                console.log('User updated successfully:', res);
+                this.loadUsers();
+                this.updateForm.reset();
+            },
+            error: (err) => {
+                console.error('Update failed:', err);
+                // Add error handling logic if needed
+            }
+        });
     } else {
-      // Mark all form fields as dirty to show validation errors
-      Object.values(this.updateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
+        Object.values(this.updateForm.controls).forEach(control => {
+            if (control.invalid) {
+                control.markAsDirty();
+                control.updateValueAndValidity({ onlySelf: true });
+            }
+        });
     }
+}
+
   }
-  }
+
   
 

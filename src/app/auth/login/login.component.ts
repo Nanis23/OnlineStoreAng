@@ -60,10 +60,10 @@ export class LoginComponent {
 
   private navigateByRole(role: string): void {
     switch (role) {
-      case 'admin':
+      case 'ADMIN':
         this.router.navigate(['/dashboard']);
         break;
-      case 'user':
+      case 'USER':
         this.router.navigate(['/dashboard']);
         break;
       case 'author':

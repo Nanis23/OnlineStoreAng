@@ -1,35 +1,40 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-light sidebar">
-  <button class="btn btn-primary mb-3" (click)="toggleSidebar()">
-    <i [class]="collapsed ? 'bi bi-arrow-right-square' : 'bi bi-arrow-left-square'"></i>
+<div [ngClass]="{'sidebar': true, 'collapsed': sidebarCollapsed}">
+  <button class="btn btn-primary toggle-button" (click)="toggleSidebar()">
+    <span *ngIf="sidebarCollapsed">☰</span>
+    <span *ngIf="!sidebarCollapsed">×</span>
   </button>
-  
-  <div [ngClass]="{ 'collapse': collapsed }">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <span class="fs-4">Menu</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-dark">
-          Users
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-dark">
-          Products
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-dark">
-          Reports
-        </a>
-      </li>
-    </ul>
-    <hr>
+  <div *ngIf="!sidebarCollapsed" class="sidebar-content">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        User
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item"  (click)="showComponent('registerUser')">Register User</a></li>
+        <li><a class="dropdown-item"  (click)="showComponent('updateUser')">Update User</a></li>
+        <li><a class="dropdown-item"  (click)="showComponent('deleteUser')">Delete User</a></li>
+      </ul>
+    </div>
+    <br>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Register Category</a></li>
+        <li><a class="dropdown-item" href="#">Update Category</a></li>
+        <li><a class="dropdown-item" href="#">Delete Category</a></li>
+      </ul>
+    </div>
+    <br>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Orders
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">View Orders</a></li>
+        <li><a class="dropdown-item" href="#">Search Order</a></li>
+        <li><a class="dropdown-item" href="#">View Order Line</a></li>
+      </ul>
+    </div>
   </div>
 </div>
