@@ -5,13 +5,12 @@ import { SidebarComponent } from '../component-dashboard/sidebar/sidebar.compone
 import { NgClass } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { RegisterUserComponent } from "../user/register-user/register-user.component";
-import { UpdateUserComponent } from "../user/update-user/update-user.component";
-import { DeleteUserComponent } from "../user/delete-user/delete-user.component";
+
 import { CategoryComponent } from "../../../components/category/category.component";
 import { UserComponent } from "../../../components/user/user.component";
 import { ProductComponent } from "../../../components/product/product.component";
 import { OrderComponent } from "../../../components/order/order.component";
+import { AuthorComponent } from "../../../components/author/author.component";
 
 
 @Component({
@@ -19,13 +18,11 @@ import { OrderComponent } from "../../../components/order/order.component";
   standalone: true,
   imports: [
     HeaderComponent, FooterComponent, SidebarComponent, NgClass, CommonModule,
-    RegisterUserComponent,
-    UpdateUserComponent,
-    DeleteUserComponent,
     CategoryComponent,
     UserComponent,
     ProductComponent,
-    OrderComponent
+    OrderComponent,
+    AuthorComponent
 ],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.css'

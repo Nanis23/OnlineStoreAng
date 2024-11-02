@@ -46,6 +46,18 @@
         
         </ul>
       </div>
+      <br>
+
+      <!--Authors-->
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         Autoret
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"  (click)="showComponent('author')">Menaxho Autor</a></li>
+        
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -59,20 +71,13 @@
       <app-category *ngIf="activeComponent === 'listCategory'"></app-category>
       <app-product  *ngIf="activeComponent === 'product'"></app-product>
       <app-order  *ngIf="activeComponent === 'order'"></app-order>
+      <app-author  *ngIf="activeComponent === 'author'"></app-author>
      
       <!-- Add additional *ngIf blocks as needed for other components -->
     </div>
 
     <!-- Main Page Content -->
-    <div class="content">
- 
-      <!-- <app-update-categorie *ngIf="activeComponent === 'updateCategory' " ></app-update-categorie> -->
-      <!-- <app-delete-categorie *ngIf="activeComponent === 'deleteCategory' " ></app-delete-categorie> -->
-     
-      
-      
-      <!-- Add your main page content here -->
-    </div>
+    
 
     <!-- Footer -->
     <app-footer></app-footer>

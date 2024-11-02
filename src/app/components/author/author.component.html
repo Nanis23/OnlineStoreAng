@@ -1,0 +1,46 @@
+<div class="container">
+  <h3 class="title">Menaxhimi i Autorëve</h3>
+  
+  <form (ngSubmit)="addAuthor()">
+    <input type="text" id="authorFirstName" [(ngModel)]="newAuthor.firstName" name="firstName" required placeholder="Emri"  />
+    <input type="text" id="authorLastName" [(ngModel)]="newAuthor.lastName" name="lastName" required placeholder="Mbiemri"  />
+    <button type="submit" class="btn btn-primary">Shto Autor</button>
+  </form>
+
+  <div class="search-container mt-3">
+    <input type="text" placeholder="Kërko për autor..." [(ngModel)]="searchTerm" class="form-control" />
+  </div>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Emri</th>
+        <th>Mbiemri</th>
+        <th>Veprimet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let author of filteredAuthors()">
+        <td>{{ author.id }}</td>
+        
+        <td *ngIf="editingAuthor?.id !== author.id">{{ author.firstName  }}</td>
+        <td *ngIf="editingAuthor?.id !== author.id">{{ author.lastName  }}</td>
+        
+        <td *ngIf="editingAuthor?.id === author.id">
+          <input [ngModel]="editingAuthor?.firstName" (ngModelChange)="updateEditingAuthorFirstName($event)" />
+        </td>
+        <td *ngIf="editingAuthor?.id === author.id">
+          <input [ngModel]="editingAuthor?.lastName" (ngModelChange)="updateEditingAuthorLastName($event)" />
+        </td>
+        
+        <td>
+          <button *ngIf="editingAuthor?.id !== author.id" (click)="startEditing(author)" class="btn btn-secondary">Përditëso</button>
+          <button *ngIf="editingAuthor?.id === author.id" (click)="updateAuthor()" class="btn btn-success">Ruaj</button>
+          <button *ngIf="editingAuthor?.id === author.id" (click)="cancelEditing()" class="btn btn-warning">Anulo</button>
+          <button (click)="deleteAuthor(author.id)" class="btn btn-danger">Fshi</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
